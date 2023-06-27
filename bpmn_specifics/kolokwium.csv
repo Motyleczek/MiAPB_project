@@ -1,0 +1,7 @@
+task_name,time_dist,time_unit,costs_dist,costs_unit,profit_dists,profit_unit
+Sprawdzenie tematu,0,-,0,-,0,-
+research,"linear(1,4)",hour,"linear(1,4)",morale,"linear(1,2)",knowledge
+nauka praktyki,"linear(1,3)",hour,"linear(1,3)",mental_units,"linear(1,2)",street_smarts
+przygotowanie ściąg,"linear(1,10)",hour,"linear(1,10)",mental_units,"linear(1,2)",knowledge
+nauka teorii,"linear(1,2)",hour,"linear(1,2)",mental_units,"linear(1,2)",knowledge
+napisanie kolokwium,"linear(0, 2)",hour,"linear(0, 2)",mental_units,"linear(-10, 2)",morale

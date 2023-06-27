@@ -1,0 +1,6 @@
+task_name,time_dist,time_unit,costs_dist,costs_unit,profit_dists,profit_unit
+choose recipe,"lognormal(5,2)",min,0,-,"linear(3,4)",mental_units
+cook potatoes,"linear(15,25)",min,"linear(15,30)",zloty,"linear(1,5)",nourishment
+cook meat,"linear(10,30)",min,"linear(15,40)",zloty,"linear(5,10)",nourishment
+prepare salad,"linear(10,15)",min,"linear(5,10)",zloty,"linear(7,8)",nourishment
+eat meal,"linear(25,35)",min,"linear(25,35)",mental_units,"linear(10,40)",mental_units

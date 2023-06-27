@@ -1,0 +1,5 @@
+task_name,time_dist,time_unit,costs_dist,costs_unit,profit_dists,profit_unit
+Decide On Direction of Expansion,"lognormal(10,2)",day,"normal(8,1)",dublons,"linear(5,10)",morale
+invade Gaul,"normal(5,1)",day,"normal(100,5)",men,"normal(100,15)",dublons
+Invade Persia,"normal(100,7)",day,"normal(1000,400)",men,"normal(2000,100)",dublons
+Celebrate Victory,"normal(5,1)",day,"linear(100,200)",dublons,"linear(100,200)",morale

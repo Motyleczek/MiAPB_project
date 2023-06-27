@@ -26,22 +26,18 @@
       <bpmn:outgoing>Flow_0pgatqx</bpmn:outgoing>
       <bpmn:outgoing>Flow_1vvszg9</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:endEvent id="koniec">
-      <bpmn:incoming>Flow_1mv6uw5</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_047rc4m" sourceRef="kolokwium_zapowiedziane" targetRef="Sprawdzenie_tematu" />
     <bpmn:sequenceFlow id="Flow_1t2df5t" sourceRef="Sprawdzenie_tematu" targetRef="AND1" />
     <bpmn:sequenceFlow id="Flow_0pgatqx" sourceRef="AND1" targetRef="sciagi" />
     <bpmn:sequenceFlow id="Flow_1vvszg9" sourceRef="AND1" targetRef="research" />
-    <bpmn:task id="test123" name="napisanie kolowium">
+    <bpmn:task id="kolowkium_napisane" name="napisanie kolowium">
       <bpmn:incoming>Flow_0syvyhn</bpmn:incoming>
-      <bpmn:outgoing>Flow_1mv6uw5</bpmn:outgoing>
+      <bpmn:outgoing>Flow_14w3dpk</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_0xk51cy" sourceRef="research" targetRef="nauka_teorii" />
     <bpmn:sequenceFlow id="Flow_09gg7j4" sourceRef="nauka_teorii" targetRef="AND2" />
     <bpmn:sequenceFlow id="Flow_1k1j5x5" sourceRef="nauka_praktyki" targetRef="AND2" />
-    <bpmn:sequenceFlow id="Flow_0syvyhn" sourceRef="AND2" targetRef="test123" />
-    <bpmn:sequenceFlow id="Flow_1mv6uw5" sourceRef="test123" targetRef="koniec" />
+    <bpmn:sequenceFlow id="Flow_0syvyhn" sourceRef="AND2" targetRef="kolowkium_napisane" />
     <bpmn:sequenceFlow id="Flow_1m16sn3" sourceRef="research" targetRef="nauka_praktyki" />
     <bpmn:parallelGateway id="AND2">
       <bpmn:incoming>Flow_09gg7j4</bpmn:incoming>
@@ -54,6 +50,15 @@
       <bpmn:incoming>Flow_047rc4m</bpmn:incoming>
       <bpmn:outgoing>Flow_1t2df5t</bpmn:outgoing>
     </bpmn:task>
+    <bpmn:task id="Activity_0uqv26b" name="dummy">
+      <bpmn:incoming>Flow_14w3dpk</bpmn:incoming>
+      <bpmn:outgoing>Flow_08pa206</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_14w3dpk" sourceRef="kolowkium_napisane" targetRef="Activity_0uqv26b" />
+    <bpmn:endEvent id="Event_1s2snlz">
+      <bpmn:incoming>Flow_08pa206</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_08pa206" sourceRef="Activity_0uqv26b" targetRef="Event_1s2snlz" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0k6uh9k">
@@ -63,6 +68,10 @@
           <dc:Bounds x="134" y="285" width="72" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0yxav4f_di" bpmnElement="nauka_teorii">
+        <dc:Bounds x="790" y="220" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0m4htys_di" bpmnElement="research">
         <dc:Bounds x="620" y="220" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -71,29 +80,29 @@
         <dc:Bounds x="790" y="50" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p2mafq_di" bpmnElement="sciagi">
+        <dc:Bounds x="790" y="380" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1bpa0dt_di" bpmnElement="AND1">
         <dc:Bounds x="495" y="235" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ljmhrv_di" bpmnElement="koniec">
-        <dc:Bounds x="1212" y="242" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_07wbt8r_di" bpmnElement="test123">
+      <bpmndi:BPMNShape id="Activity_07wbt8r_di" bpmnElement="kolowkium_napisane">
         <dc:Bounds x="1050" y="220" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0yxav4f_di" bpmnElement="nauka_teorii">
-        <dc:Bounds x="790" y="220" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1dr2ocn_di" bpmnElement="AND2">
         <dc:Bounds x="955" y="235" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0p2mafq_di" bpmnElement="sciagi">
-        <dc:Bounds x="790" y="380" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1krsukw_di" bpmnElement="Sprawdzenie_tematu">
         <dc:Bounds x="290" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0uqv26b_di" bpmnElement="Activity_0uqv26b">
+        <dc:Bounds x="1220" y="330" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1s2snlz_di" bpmnElement="Event_1s2snlz">
+        <dc:Bounds x="1392" y="352" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_047rc4m_di" bpmnElement="Flow_047rc4m">
         <di:waypoint x="188" y="260" />
@@ -129,10 +138,6 @@
         <di:waypoint x="1005" y="260" />
         <di:waypoint x="1050" y="260" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1mv6uw5_di" bpmnElement="Flow_1mv6uw5">
-        <di:waypoint x="1150" y="260" />
-        <di:waypoint x="1212" y="260" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1m16sn3_di" bpmnElement="Flow_1m16sn3">
         <di:waypoint x="720" y="260" />
         <di:waypoint x="755" y="260" />
@@ -143,6 +148,16 @@
         <di:waypoint x="890" y="420" />
         <di:waypoint x="980" y="420" />
         <di:waypoint x="980" y="285" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14w3dpk_di" bpmnElement="Flow_14w3dpk">
+        <di:waypoint x="1150" y="260" />
+        <di:waypoint x="1190" y="260" />
+        <di:waypoint x="1190" y="370" />
+        <di:waypoint x="1220" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08pa206_di" bpmnElement="Flow_08pa206">
+        <di:waypoint x="1320" y="370" />
+        <di:waypoint x="1392" y="370" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
