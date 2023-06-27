@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_09exqf3" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <bpmn:process id="Romeinvaddes" name="Rome Invades" isExecutable="true" camunda:historyTimeToLive="1">
+    <bpmn:startEvent id="StartEvent_1" name="Roman Empire needs to expand">
+      <bpmn:outgoing>Flow_1mb02cw</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1mb02cw" sourceRef="StartEvent_1" targetRef="Activity_16et3ux" />
+    <bpmn:exclusiveGateway id="Gateway_17kp28d">
+      <bpmn:incoming>Flow_013ersq</bpmn:incoming>
+      <bpmn:outgoing>Flow_0urb1sh</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0wtvuzu</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_013ersq" sourceRef="Activity_16et3ux" targetRef="Gateway_17kp28d" />
+    <bpmn:sequenceFlow id="Flow_0urb1sh" name="expand North" sourceRef="Gateway_17kp28d" targetRef="Activity_139715r">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{north}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0wtvuzu" name="expand South" sourceRef="Gateway_17kp28d" targetRef="Activity_0hm0wgr">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{not north}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_16et3ux" name="Decide On Direction of Expansion" camunda:type="external" camunda:topic="DecideOnExpansion">
+      <bpmn:incoming>Flow_1mb02cw</bpmn:incoming>
+      <bpmn:outgoing>Flow_013ersq</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_00witu2">
+      <bpmn:incoming>Flow_19zcl52</bpmn:incoming>
+      <bpmn:incoming>Flow_0ybl642</bpmn:incoming>
+      <bpmn:outgoing>Flow_1uax4jz</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_19zcl52" sourceRef="Activity_139715r" targetRef="Gateway_00witu2" />
+    <bpmn:sequenceFlow id="Flow_0ybl642" sourceRef="Activity_0hm0wgr" targetRef="Gateway_00witu2" />
+    <bpmn:sequenceFlow id="Flow_1uax4jz" sourceRef="Gateway_00witu2" targetRef="Activity_1pmhfws" />
+    <bpmn:endEvent id="Event_0pmxza3">
+      <bpmn:incoming>Flow_02aeldi</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_02aeldi" sourceRef="Activity_1pmhfws" targetRef="Event_0pmxza3" />
+    <bpmn:task id="Activity_139715r" name="invade Gaul">
+      <bpmn:incoming>Flow_0urb1sh</bpmn:incoming>
+      <bpmn:outgoing>Flow_19zcl52</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_0hm0wgr" name="Invade Persia">
+      <bpmn:incoming>Flow_0wtvuzu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ybl642</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_1pmhfws" name="Celebrate Victory">
+      <bpmn:incoming>Flow_1uax4jz</bpmn:incoming>
+      <bpmn:outgoing>Flow_02aeldi</bpmn:outgoing>
+    </bpmn:task>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Romeinvaddes">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="209" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="156" y="252" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_17kp28d_di" bpmnElement="Gateway_17kp28d" isMarkerVisible="true">
+        <dc:Bounds x="425" y="202" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qagtmn_di" bpmnElement="Activity_16et3ux">
+        <dc:Bounds x="270" y="187" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_00witu2_di" bpmnElement="Gateway_00witu2" isMarkerVisible="true">
+        <dc:Bounds x="825" y="202" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0pmxza3_di" bpmnElement="Event_0pmxza3">
+        <dc:Bounds x="1352" y="209" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0u2nwxi_di" bpmnElement="Activity_139715r">
+        <dc:Bounds x="540" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lbzv76_di" bpmnElement="Activity_0hm0wgr">
+        <dc:Bounds x="540" y="300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pmrfe3_di" bpmnElement="Activity_1pmhfws">
+        <dc:Bounds x="1060" y="187" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1mb02cw_di" bpmnElement="Flow_1mb02cw">
+        <di:waypoint x="215" y="227" />
+        <di:waypoint x="270" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_013ersq_di" bpmnElement="Flow_013ersq">
+        <di:waypoint x="370" y="227" />
+        <di:waypoint x="425" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0urb1sh_di" bpmnElement="Flow_0urb1sh">
+        <di:waypoint x="450" y="202" />
+        <di:waypoint x="450" y="120" />
+        <di:waypoint x="540" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="462" y="102" width="67" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wtvuzu_di" bpmnElement="Flow_0wtvuzu">
+        <di:waypoint x="450" y="252" />
+        <di:waypoint x="450" y="340" />
+        <di:waypoint x="540" y="340" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="462" y="322" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19zcl52_di" bpmnElement="Flow_19zcl52">
+        <di:waypoint x="640" y="120" />
+        <di:waypoint x="850" y="120" />
+        <di:waypoint x="850" y="202" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ybl642_di" bpmnElement="Flow_0ybl642">
+        <di:waypoint x="640" y="340" />
+        <di:waypoint x="850" y="340" />
+        <di:waypoint x="850" y="252" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1uax4jz_di" bpmnElement="Flow_1uax4jz">
+        <di:waypoint x="875" y="227" />
+        <di:waypoint x="1060" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02aeldi_di" bpmnElement="Flow_02aeldi">
+        <di:waypoint x="1160" y="227" />
+        <di:waypoint x="1352" y="227" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
