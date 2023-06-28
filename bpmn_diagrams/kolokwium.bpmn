@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ikrhzn" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ikrhzn" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
   <bpmn:process id="Process_0k6uh9k" isExecutable="true" camunda:historyTimeToLive="1">
     <bpmn:startEvent id="kolokwium_zapowiedziane" name="kolokwium zapowiedziane">
       <bpmn:outgoing>Flow_047rc4m</bpmn:outgoing>
@@ -34,26 +34,36 @@
     <bpmn:sequenceFlow id="Flow_0pgatqx" sourceRef="AND1" targetRef="sciagi" />
     <bpmn:sequenceFlow id="Flow_1vvszg9" sourceRef="AND1" targetRef="research" />
     <bpmn:task id="test123" name="napisanie kolowium">
-      <bpmn:incoming>Flow_0syvyhn</bpmn:incoming>
+      <bpmn:incoming>Flow_1sfebln</bpmn:incoming>
       <bpmn:outgoing>Flow_1mv6uw5</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_0xk51cy" sourceRef="research" targetRef="nauka_teorii" />
     <bpmn:sequenceFlow id="Flow_09gg7j4" sourceRef="nauka_teorii" targetRef="AND2" />
     <bpmn:sequenceFlow id="Flow_1k1j5x5" sourceRef="nauka_praktyki" targetRef="AND2" />
-    <bpmn:sequenceFlow id="Flow_0syvyhn" sourceRef="AND2" targetRef="test123" />
+    <bpmn:sequenceFlow id="Flow_0syvyhn" sourceRef="AND2" targetRef="Activity_1nhu8ep" />
     <bpmn:sequenceFlow id="Flow_1mv6uw5" sourceRef="test123" targetRef="koniec" />
     <bpmn:sequenceFlow id="Flow_1m16sn3" sourceRef="research" targetRef="nauka_praktyki" />
     <bpmn:parallelGateway id="AND2">
       <bpmn:incoming>Flow_09gg7j4</bpmn:incoming>
       <bpmn:incoming>Flow_1k1j5x5</bpmn:incoming>
-      <bpmn:incoming>Flow_1cxqtq9</bpmn:incoming>
       <bpmn:outgoing>Flow_0syvyhn</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:sequenceFlow id="Flow_1cxqtq9" sourceRef="sciagi" targetRef="AND2" />
+    <bpmn:sequenceFlow id="Flow_1cxqtq9" sourceRef="sciagi" targetRef="Gateway_0qyd9zr" />
     <bpmn:task id="Sprawdzenie_tematu" name="Sprawdzenie tematu">
       <bpmn:incoming>Flow_047rc4m</bpmn:incoming>
       <bpmn:outgoing>Flow_1t2df5t</bpmn:outgoing>
     </bpmn:task>
+    <bpmn:task id="Activity_1nhu8ep" name="dummy">
+      <bpmn:incoming>Flow_0syvyhn</bpmn:incoming>
+      <bpmn:outgoing>Flow_13we0k8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_13we0k8" sourceRef="Activity_1nhu8ep" targetRef="Gateway_0qyd9zr" />
+    <bpmn:sequenceFlow id="Flow_1sfebln" sourceRef="Gateway_0qyd9zr" targetRef="test123" />
+    <bpmn:parallelGateway id="Gateway_0qyd9zr">
+      <bpmn:incoming>Flow_13we0k8</bpmn:incoming>
+      <bpmn:incoming>Flow_1cxqtq9</bpmn:incoming>
+      <bpmn:outgoing>Flow_1sfebln</bpmn:outgoing>
+    </bpmn:parallelGateway>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0k6uh9k">
@@ -63,6 +73,10 @@
           <dc:Bounds x="134" y="285" width="72" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0yxav4f_di" bpmnElement="nauka_teorii">
+        <dc:Bounds x="790" y="220" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0m4htys_di" bpmnElement="research">
         <dc:Bounds x="620" y="220" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -71,29 +85,32 @@
         <dc:Bounds x="790" y="50" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1bpa0dt_di" bpmnElement="AND1">
-        <dc:Bounds x="495" y="235" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0ljmhrv_di" bpmnElement="koniec">
-        <dc:Bounds x="1212" y="242" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_07wbt8r_di" bpmnElement="test123">
-        <dc:Bounds x="1050" y="220" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0yxav4f_di" bpmnElement="nauka_teorii">
-        <dc:Bounds x="790" y="220" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1dr2ocn_di" bpmnElement="AND2">
-        <dc:Bounds x="955" y="235" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0p2mafq_di" bpmnElement="sciagi">
         <dc:Bounds x="790" y="380" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1bpa0dt_di" bpmnElement="AND1">
+        <dc:Bounds x="495" y="235" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1dr2ocn_di" bpmnElement="AND2">
+        <dc:Bounds x="955" y="235" width="50" height="50" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1krsukw_di" bpmnElement="Sprawdzenie_tematu">
         <dc:Bounds x="290" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1nhu8ep_di" bpmnElement="Activity_1nhu8ep">
+        <dc:Bounds x="1020" y="220" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07wbt8r_di" bpmnElement="test123">
+        <dc:Bounds x="1200" y="220" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_00zktmx_di" bpmnElement="Gateway_0qyd9zr">
+        <dc:Bounds x="1135" y="235" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ljmhrv_di" bpmnElement="koniec">
+        <dc:Bounds x="1342" y="242" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_047rc4m_di" bpmnElement="Flow_047rc4m">
         <di:waypoint x="188" y="260" />
@@ -127,11 +144,13 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0syvyhn_di" bpmnElement="Flow_0syvyhn">
         <di:waypoint x="1005" y="260" />
-        <di:waypoint x="1050" y="260" />
+        <di:waypoint x="1020" y="260" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1mv6uw5_di" bpmnElement="Flow_1mv6uw5">
-        <di:waypoint x="1150" y="260" />
-        <di:waypoint x="1212" y="260" />
+        <di:waypoint x="1250" y="220" />
+        <di:waypoint x="1250" y="200" />
+        <di:waypoint x="1360" y="200" />
+        <di:waypoint x="1360" y="242" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1m16sn3_di" bpmnElement="Flow_1m16sn3">
         <di:waypoint x="720" y="260" />
@@ -141,8 +160,16 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1cxqtq9_di" bpmnElement="Flow_1cxqtq9">
         <di:waypoint x="890" y="420" />
-        <di:waypoint x="980" y="420" />
-        <di:waypoint x="980" y="285" />
+        <di:waypoint x="1160" y="420" />
+        <di:waypoint x="1160" y="285" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13we0k8_di" bpmnElement="Flow_13we0k8">
+        <di:waypoint x="1120" y="260" />
+        <di:waypoint x="1135" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1sfebln_di" bpmnElement="Flow_1sfebln">
+        <di:waypoint x="1185" y="260" />
+        <di:waypoint x="1200" y="260" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
