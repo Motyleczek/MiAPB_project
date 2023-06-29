@@ -33,6 +33,10 @@ Instructions for Windows below
 
 ![obraz](https://github.com/Motyleczek/MiAPB_project/assets/39114845/692bc97a-e12e-4d69-ab71-78508e4501cc)
 
-TODO: import csv to python  
+### How to use `simulation_script.py`
 
-Instructions for Macbook TODO?
+- make sure your your bpmn diagram file is in bpmn_diagrams folder
+- create an appropriate specifics .csv file in accordance to instruction in folder bpmn_specifics, then save your file in said folder
+- run `simulation_script.py` and act in accordance to text prompts
+
+If for any reason the results of simulation seem wrong, it is possible to analyse each step the algorithm is making through `summary_stats.ipynb` 
