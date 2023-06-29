@@ -1,6 +1,8 @@
 # MiAPB_project
 Semester project for modelling and analysing business processes
 
+Project report (polish): https://docs.google.com/document/d/1ZtCDB9LrEHWC5ZpO9lmtDQgbYWmM6aUAHiJJHauMmnE/edit?usp=sharing
+
 
 ## Instructions for using the project
 
